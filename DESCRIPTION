@@ -1,7 +1,7 @@
 Package: GeoTcgaData
 Type: Package
-Title: Processed a various types of data on GEO and TCGA
-Version: 0.1.0
+Title: Processing various types of data on GEO and TCGA
+Version: 0.2.0
 Authors@R: person(given = "Erqiang", family = "Hu", email = "13766876214@163.com", role  = c("aut", "cre"))
 Description: Gene Expression Omnibus(GEO) and The Cancer Genome Atlas (TCGA) 
     provide us with a wealth of data, such as RNA-seq, DNA Methylation, 
@@ -18,8 +18,8 @@ VignetteBuilder: knitr
 Imports: utils, data.table
 Language: en-US
 NeedsCompilation: no
-Packaged: 2019-09-10 03:25:39 UTC; Administrator
+Packaged: 2019-09-23 01:32:58 UTC; Administrator
 Author: Erqiang Hu [aut, cre]
 Maintainer: Erqiang Hu <13766876214@163.com>
 Repository: CRAN
-Date/Publication: 2019-09-16 09:30:03 UTC
+Date/Publication: 2019-09-23 04:10:02 UTC
