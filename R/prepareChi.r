@@ -1,5 +1,5 @@
 
-#' Title preparer file for chi-square test
+#' Preparer file for chi-square test
 #'
 #' @param jieguo2 result of ann_merge()
 #'
@@ -65,7 +65,7 @@ return(cnv_chi)
 }
 
 
-#' Title do chi-square test to find differential genes
+#' Do chi-square test to find differential genes
 #'
 #' @param rt result of prepare_chi()
 #'
@@ -104,6 +104,7 @@ differential_cnv <- function(rt) {
     pvalue=as.numeric(as.vector(outTab[,"Pvalue"]))
     adjP=stats::p.adjust(pvalue,method ="bonferroni")
     outTab=cbind(outTab,adjPvalue=adjP)
+	rownames(outTab) <- rownames(rt)
 	return(outTab)
 }
 

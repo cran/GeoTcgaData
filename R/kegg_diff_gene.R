@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' profile2 <- classify_sample(profile)
+#' profile2 <- classify_sample(kegg_liver)
 classify_sample<-function(profile_input){
   biaoqian<-profile_input[1,]
   dada<-biaoqian
@@ -30,7 +30,7 @@ classify_sample<-function(profile_input){
 #' @export
 #'
 #' @examples
-#' profile2 <- classify_sample(profile)
+#' profile2 <- classify_sample(kegg_liver)
 #' jieguo <- diff_gene(profile2)
 diff_gene<-function(profile2_input){
   if(requireNamespace("DESeq2", quielty = TRUE)) {
@@ -40,6 +40,7 @@ diff_gene<-function(profile2_input){
   rownames(database)<-profile2_input[-1,1]
   condition<-profile2_input[1,-1]
   database <- round(as.matrix(database))
+  rownames(database) <- as.character(rownames(database))
   condition<-as.numeric(condition)
   condition<-round(condition)
 
