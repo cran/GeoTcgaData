@@ -104,13 +104,15 @@ rep2_result <- rep2(input_fil," /// ")
 
 ## Other downstream analyses
 
-1. The function `id_conversion_vector` could convert gene id from one of `symbol`, `RefSeq_ID`, `Ensembl_ID`, `NCBI_Gene_ID`, `UCSC_ID`, and `UniProt_ID` to another. For example:
+1. The function `id_conversion_vector` could convert gene id from one of `symbol`, `RefSeq_ID`, `Ensembl_ID`, `NCBI_Gene_ID`, `UCSC_ID`, and `UniProt_ID` , etc. to another. Use `id_ava()` to get all the convertible ids. For example:
 
 ```r
-id_conversion_vector("symbol", "Ensembl_ID", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
+id_conversion_vector("symbol", "ensembl_gene_id", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
 
 ```
 
+
+When the user converts the Ensembl ID to other ids, the version number needs to be removed. For example, "ENSG00000186092.4" doesn't work, you need to change it to "ENSG00000186092".
 
 Especially, the function id_conversion could convert  ENSEMBL gene id to gene Symbol in TCGA. For example:
 
@@ -130,7 +132,7 @@ jieguo <- countToFpkm_matrix(lung_squ_count2)
 ```
 
 ```r
-lung_squ_count2 <- matrix(c(0.11,0.22,0.43,0.14,0.875,0.66,0.77,0.18,0.29),ncol=3)
+lung_squ_count2 <- matrix(c(11,22,23,14,15,6,17,18,29),ncol=3)
 rownames(lung_squ_count2) <- c("DISC1","TCOF1","SPPL3")
 colnames(lung_squ_count2) <- c("sample1","sample2","sample3")
 jieguo <- countToTpm_matrix(lung_squ_count2)

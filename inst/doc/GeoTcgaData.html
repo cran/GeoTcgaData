@@ -8,7 +8,7 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 
@@ -18,9 +18,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -30,16 +30,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +46,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,9 +115,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +283,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -314,16 +310,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>Get the development version from github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;huerqiang/GeoTcgaData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;huerqiang/GeoTcgaData&quot;</span>)</a></code></pre></div>
 <p>Or the released version from CRAN:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;GeoTcgaData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;GeoTcgaData&quot;</span>)</a></code></pre></div>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation, and Copy number variation data. It’s easy to download data from TCGA using the gdc tool, but processing these data into a format suitable for bioinformatics analysis requires more work. This R package was developed to handle these data.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(GeoTcgaData)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(GeoTcgaData)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; Hello, friend! welcome to use!</span></a></code></pre></div>
 </div>
 <div id="common-operations-on-geotcgadata" class="section level2">
 <h2>Common operations on GeoTcgaData</h2>
@@ -332,78 +329,79 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="rna-seq-data-integration-and-differential-gene-extraction" class="section level2">
 <h2>RNA-seq data integration and differential gene extraction</h2>
 <p>The function <code>classify_sample</code> and <code>diff_gene</code> could get the differentially expressioned genes using DESeq2 package. For examples:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(DESeq2)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>profile2 &lt;-<span class="st"> </span><span class="kw">classify_sample</span>(kegg_liver) </span>
-<span id="cb4-3"><a href="#cb4-3"></a>jieguo &lt;-<span class="st"> </span><span class="kw">diff_gene</span>(profile2)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(DESeq2)</a>
+<a class="sourceLine" id="cb4-2" title="2">profile2 &lt;-<span class="st"> </span><span class="kw">classify_sample</span>(kegg_liver) </a>
+<a class="sourceLine" id="cb4-3" title="3">jieguo &lt;-<span class="st"> </span><span class="kw">diff_gene</span>(profile2)</a></code></pre></div>
 <p>The parameter <code>kegg_liver</code> is a matrix or data.frame of gene expression data(count) in TCGA.</p>
 </div>
 <div id="dna-methylation-data-integration" class="section level2">
 <h2>DNA Methylation data integration</h2>
 <p>The function <code>Merge_methy_tcga</code> could Merge methylation data downloaded from TCGA. This makes it easier to extract differentially methylated genes in the downstream analysis. For example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dirr =<span class="st"> </span><span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;methy&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>merge_result &lt;-<span class="st"> </span><span class="kw">Merge_methy_tcga</span>(dirr)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">dirr =<span class="st"> </span><span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;methy&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">merge_result &lt;-<span class="st"> </span><span class="kw">Merge_methy_tcga</span>(dirr)</a></code></pre></div>
 </div>
 <div id="copy-number-variation-data-integration-and-differential-gene-extraction" class="section level2">
 <h2>Copy number variation data integration and differential gene extraction</h2>
 <p>The function <code>ann_merge</code> could merge the copy number variation data downloaded from TCGA using gdc. For example:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>metadatafile_name &lt;-<span class="st"> &quot;metadata.cart.2018-11-09.json&quot;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>jieguo2 &lt;-<span class="st"> </span><span class="kw">ann_merge</span>(<span class="dt">dirr =</span> <span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;cnv&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>),<span class="dt">metadatafile=</span>metadatafile_name)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">metadatafile_name &lt;-<span class="st"> &quot;metadata.cart.2018-11-09.json&quot;</span></a>
+<a class="sourceLine" id="cb6-2" title="2">jieguo2 &lt;-<span class="st"> </span><span class="kw">ann_merge</span>(<span class="dt">dirr =</span> <span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;cnv&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>),<span class="dt">metadatafile=</span>metadatafile_name)</a></code></pre></div>
 <p>The parameter <code>dirr</code> is a string for the direction of copy number variation data downloaded from TCGA. The parameter <code>metadatafile</code> is the metadata file download from TCGA. The function <code>prepare_chi</code> and <code>differential_cnv</code> could do chi-square test to find copy number variation differential genes. For example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>jieguo3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="fl">1.09150</span>,<span class="op">-</span><span class="fl">1.47120</span>,<span class="op">-</span><span class="fl">0.87050</span>,<span class="op">-</span><span class="fl">0.50880</span>,</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fl">-0.50880</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.601962</span>,<span class="fl">2.621332</span>,<span class="fl">2.621332</span>,</span>
-<span id="cb7-3"><a href="#cb7-3"></a>                    <span class="fl">2.621332</span>,<span class="fl">2.621332</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>                    <span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>),<span class="dt">nrow=</span><span class="dv">5</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">rownames</span>(jieguo3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AJAP1&quot;</span>, <span class="st">&quot;FHAD1&quot;</span>, <span class="st">&quot;CLCNKB&quot;</span>, <span class="st">&quot;CROCCP2&quot;</span>, <span class="st">&quot;AL137798.3&quot;</span>)</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="kw">colnames</span>(jieguo3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;TCGA-DD-A4NS-10A-01D-A30U-01&quot;</span>, <span class="st">&quot;TCGA-ED-A82E-01A-11D-A34Y-01&quot;</span>, </span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="st">&quot;TCGA-WQ-A9G7-01A-11D-A36W-01&quot;</span>, <span class="st">&quot;TCGA-DD-AADN-01A-11D-A40Q-01&quot;</span>, </span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="st">&quot;TCGA-ZS-A9CD-10A-01D-A36Z-01&quot;</span>, <span class="st">&quot;TCGA-DD-A1EB-11A-11D-A12Y-01&quot;</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>rt &lt;-<span class="st"> </span><span class="kw">prepare_chi</span>(jieguo3)</span>
-<span id="cb7-10"><a href="#cb7-10"></a>chiResult &lt;-<span class="st"> </span><span class="kw">differential_cnv</span>(rt)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">jieguo3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="fl">1.09150</span>,<span class="op">-</span><span class="fl">1.47120</span>,<span class="op">-</span><span class="fl">0.87050</span>,<span class="op">-</span><span class="fl">0.50880</span>,</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="fl">-0.50880</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.601962</span>,<span class="fl">2.621332</span>,<span class="fl">2.621332</span>,</a>
+<a class="sourceLine" id="cb7-3" title="3">                    <span class="fl">2.621332</span>,<span class="fl">2.621332</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,</a>
+<a class="sourceLine" id="cb7-4" title="4">                    <span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>,<span class="fl">2.0</span>),<span class="dt">nrow=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw">rownames</span>(jieguo3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AJAP1&quot;</span>, <span class="st">&quot;FHAD1&quot;</span>, <span class="st">&quot;CLCNKB&quot;</span>, <span class="st">&quot;CROCCP2&quot;</span>, <span class="st">&quot;AL137798.3&quot;</span>)</a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="kw">colnames</span>(jieguo3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;TCGA-DD-A4NS-10A-01D-A30U-01&quot;</span>, <span class="st">&quot;TCGA-ED-A82E-01A-11D-A34Y-01&quot;</span>, </a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="st">&quot;TCGA-WQ-A9G7-01A-11D-A36W-01&quot;</span>, <span class="st">&quot;TCGA-DD-AADN-01A-11D-A40Q-01&quot;</span>, </a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="st">&quot;TCGA-ZS-A9CD-10A-01D-A36Z-01&quot;</span>, <span class="st">&quot;TCGA-DD-A1EB-11A-11D-A12Y-01&quot;</span>)</a>
+<a class="sourceLine" id="cb7-9" title="9">rt &lt;-<span class="st"> </span><span class="kw">prepare_chi</span>(jieguo3)</a>
+<a class="sourceLine" id="cb7-10" title="10">chiResult &lt;-<span class="st"> </span><span class="kw">differential_cnv</span>(rt)</a></code></pre></div>
 <p>The parameter of <code>prepare_chi</code> is the result of function <code>ann_merge</code> and the parameter of function <code>differential_cnv</code> is the result of prepare_chi.</p>
 </div>
 <div id="geo-chip-data-processing" class="section level2">
 <h2>GEO chip data processing</h2>
 <p>The function <code>gene_ave</code> could average the expression data of different ids for the same gene in the GEO chip data. For example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>aa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gene Symbol&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARC1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>bb &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;2.969058399&quot;</span>, <span class="st">&quot;4.722410064&quot;</span>, <span class="st">&quot;8.165514853&quot;</span>, <span class="st">&quot;8.24243893&quot;</span>, <span class="st">&quot;8.60815086&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>cc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;3.969058399&quot;</span>, <span class="st">&quot;5.722410064&quot;</span>, <span class="st">&quot;7.165514853&quot;</span>, <span class="st">&quot;6.24243893&quot;</span>, <span class="st">&quot;7.60815086&quot;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>file1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">aa=</span>aa,<span class="dt">bb=</span>bb,<span class="dt">cc=</span>cc)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>result &lt;-<span class="st"> </span><span class="kw">gene_ave</span>(file1)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">aa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gene Symbol&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARC1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>, <span class="st">&quot;MARCH1&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2">bb &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;2.969058399&quot;</span>, <span class="st">&quot;4.722410064&quot;</span>, <span class="st">&quot;8.165514853&quot;</span>, <span class="st">&quot;8.24243893&quot;</span>, <span class="st">&quot;8.60815086&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">cc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;3.969058399&quot;</span>, <span class="st">&quot;5.722410064&quot;</span>, <span class="st">&quot;7.165514853&quot;</span>, <span class="st">&quot;6.24243893&quot;</span>, <span class="st">&quot;7.60815086&quot;</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4">file1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">aa=</span>aa,<span class="dt">bb=</span>bb,<span class="dt">cc=</span>cc)</a>
+<a class="sourceLine" id="cb8-5" title="5">result &lt;-<span class="st"> </span><span class="kw">gene_ave</span>(file1)</a></code></pre></div>
 <p>Multiple genes symbols may correspond to a same chip id. The result of function <code>rep1</code> is to assign the expression of this id to each gene, and function <code>rep2</code> deletes the expression. For example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>aa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MARCH1 /// MMA&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH2 /// MARCH3&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2"></a>        <span class="st">&quot;MARCH3 /// MARCH4&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>bb &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2.969058399&quot;</span>,<span class="st">&quot;4.722410064&quot;</span>,<span class="st">&quot;8.165514853&quot;</span>,<span class="st">&quot;8.24243893&quot;</span>,<span class="st">&quot;8.60815086&quot;</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>cc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;3.969058399&quot;</span>,<span class="st">&quot;5.722410064&quot;</span>,<span class="st">&quot;7.165514853&quot;</span>,<span class="st">&quot;6.24243893&quot;</span>,<span class="st">&quot;7.60815086&quot;</span>)</span>
-<span id="cb9-5"><a href="#cb9-5"></a>input_fil &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">aa=</span>aa,<span class="dt">bb=</span>bb,<span class="dt">cc=</span>cc)</span>
-<span id="cb9-6"><a href="#cb9-6"></a>rep1_result &lt;-<span class="st"> </span><span class="kw">rep1</span>(input_fil,<span class="st">&quot; /// &quot;</span>)</span>
-<span id="cb9-7"><a href="#cb9-7"></a>rep1_result &lt;-<span class="st"> </span><span class="kw">rep2</span>(input_fil,<span class="st">&quot; /// &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">aa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MARCH1 /// MMA&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH2 /// MARCH3&quot;</span>,</a>
+<a class="sourceLine" id="cb9-2" title="2">        <span class="st">&quot;MARCH3 /// MARCH4&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">bb &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2.969058399&quot;</span>,<span class="st">&quot;4.722410064&quot;</span>,<span class="st">&quot;8.165514853&quot;</span>,<span class="st">&quot;8.24243893&quot;</span>,<span class="st">&quot;8.60815086&quot;</span>)</a>
+<a class="sourceLine" id="cb9-4" title="4">cc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;3.969058399&quot;</span>,<span class="st">&quot;5.722410064&quot;</span>,<span class="st">&quot;7.165514853&quot;</span>,<span class="st">&quot;6.24243893&quot;</span>,<span class="st">&quot;7.60815086&quot;</span>)</a>
+<a class="sourceLine" id="cb9-5" title="5">input_fil &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">aa=</span>aa,<span class="dt">bb=</span>bb,<span class="dt">cc=</span>cc)</a>
+<a class="sourceLine" id="cb9-6" title="6">rep1_result &lt;-<span class="st"> </span><span class="kw">rep1</span>(input_fil,<span class="st">&quot; /// &quot;</span>)</a>
+<a class="sourceLine" id="cb9-7" title="7">rep1_result &lt;-<span class="st"> </span><span class="kw">rep2</span>(input_fil,<span class="st">&quot; /// &quot;</span>)</a></code></pre></div>
 </div>
 <div id="other-downstream-analyses" class="section level2">
 <h2>Other downstream analyses</h2>
 <ol style="list-style-type: decimal">
-<li>The function <code>id_conversion_vector</code> could convert gene id from one of <code>symbol</code>, <code>RefSeq_ID</code>, <code>Ensembl_ID</code>, <code>NCBI_Gene_ID</code>, <code>UCSC_ID</code>, and <code>UniProt_ID</code> to another. For example:</li>
+<li>The function <code>id_conversion_vector</code> could convert gene id from one of <code>symbol</code>, <code>RefSeq_ID</code>, <code>Ensembl_ID</code>, <code>NCBI_Gene_ID</code>, <code>UCSC_ID</code>, and <code>UniProt_ID</code> , etc. to another. Use <code>id_ava()</code> to get all the convertible ids. For example:</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">id_conversion_vector</span>(<span class="st">&quot;symbol&quot;</span>, <span class="st">&quot;Ensembl_ID&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>)) </span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; [1] &quot;ENSG00000166535&quot; &quot;ENSG00000256661&quot; &quot;ENSG00000128274&quot; &quot;not available&quot;  </span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; [5] &quot;ENSG00000094914&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">id_conversion_vector</span>(<span class="st">&quot;symbol&quot;</span>, <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>)) </a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt; [1] &quot;ENSG00000166535&quot; &quot;ENSG00000256661&quot; &quot;ENSG00000128274&quot; &quot;&quot;               </span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; [5] &quot;ENSG00000094914&quot;</span></a></code></pre></div>
+<p>When the user converts the Ensembl ID to other ids, the version number needs to be removed. For example, “ENSG00000186092.4” doesn’t work, you need to change it to “ENSG00000186092”.</p>
 <p>Especially, the function <code>id_conversion</code> could convert ENSEMBL gene id to gene Symbol in TCGA. For example:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>result &lt;-<span class="st"> </span><span class="kw">id_conversion</span>(profile)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">result &lt;-<span class="st"> </span><span class="kw">id_conversion</span>(profile)</a></code></pre></div>
 <p>The parameter <code>profile</code> is a data.frame or matrix of gene expression data in TCGA.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>The function <code>countToFpkm_matrix</code> and <code>countToTpm_matrix</code> could convert count data to FPKM or TPM data.</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>lung_squ_count2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>),<span class="dt">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">rownames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">colnames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>jieguo &lt;-<span class="st"> </span><span class="kw">countToFpkm_matrix</span>(lung_squ_count2)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>lung_squ_count2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.11</span>,<span class="fl">0.22</span>,<span class="fl">0.43</span>,<span class="fl">0.14</span>,<span class="fl">0.875</span>,<span class="fl">0.66</span>,<span class="fl">0.77</span>,<span class="fl">0.18</span>,<span class="fl">0.29</span>),<span class="dt">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">rownames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="kw">colnames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>jieguo &lt;-<span class="st"> </span><span class="kw">countToTpm_matrix</span>(lung_squ_count2)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">lung_squ_count2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>),<span class="dt">ncol=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw">rownames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="kw">colnames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</a>
+<a class="sourceLine" id="cb12-4" title="4">jieguo &lt;-<span class="st"> </span><span class="kw">countToFpkm_matrix</span>(lung_squ_count2)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">lung_squ_count2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.11</span>,<span class="fl">0.22</span>,<span class="fl">0.43</span>,<span class="fl">0.14</span>,<span class="fl">0.875</span>,<span class="fl">0.66</span>,<span class="fl">0.77</span>,<span class="fl">0.18</span>,<span class="fl">0.29</span>),<span class="dt">ncol=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw">rownames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="kw">colnames</span>(lung_squ_count2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4">jieguo &lt;-<span class="st"> </span><span class="kw">countToTpm_matrix</span>(lung_squ_count2)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>The function <code>tcga_cli_deal</code> could combine clinical information obtained from TCGA and extract survival data. For example:</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>tcga_cli &lt;-<span class="st"> </span><span class="kw">tcga_cli_deal</span>(<span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;tcga_cli&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">tcga_cli &lt;-<span class="st"> </span><span class="kw">tcga_cli_deal</span>(<span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;tcga_cli&quot;</span>),<span class="dt">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>))</a></code></pre></div>
 </div>
 
 

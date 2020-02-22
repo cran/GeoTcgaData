@@ -57,7 +57,7 @@ rep1_result <- rep1(input_fil," /// ")
 rep1_result <- rep2(input_fil," /// ")
 
 ## -----------------------------------------------------------------------------
-id_conversion_vector("symbol", "Ensembl_ID", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
+id_conversion_vector("symbol", "ensembl_gene_id", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
 
 ## -----------------------------------------------------------------------------
 result <- id_conversion(profile)
