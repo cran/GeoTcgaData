@@ -381,8 +381,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li>The function <code>id_conversion_vector</code> could convert gene id from one of <code>symbol</code>, <code>RefSeq_ID</code>, <code>Ensembl_ID</code>, <code>NCBI_Gene_ID</code>, <code>UCSC_ID</code>, and <code>UniProt_ID</code> , etc. to another. Use <code>id_ava()</code> to get all the convertible ids. For example:</li>
 </ol>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">id_conversion_vector</span>(<span class="st">&quot;symbol&quot;</span>, <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>)) </a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt; [1] &quot;ENSG00000166535&quot; &quot;ENSG00000256661&quot; &quot;ENSG00000128274&quot; &quot;&quot;               </span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; [5] &quot;ENSG00000094914&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&gt;             A2ML1         A2ML1-AS1            A4GALT             A12M1 </span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; &quot;ENSG00000166535&quot; &quot;ENSG00000256661&quot; &quot;ENSG00000128274&quot;                &quot;&quot; </span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co">#&gt;              AAAS </span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="co">#&gt; &quot;ENSG00000094914&quot;</span></a></code></pre></div>
 <p>When the user converts the Ensembl ID to other ids, the version number needs to be removed. For example, “ENSG00000186092.4” doesn’t work, you need to change it to “ENSG00000186092”.</p>
 <p>Especially, the function <code>id_conversion</code> could convert ENSEMBL gene id to gene Symbol in TCGA. For example:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">result &lt;-<span class="st"> </span><span class="kw">id_conversion</span>(profile)</a></code></pre></div>
