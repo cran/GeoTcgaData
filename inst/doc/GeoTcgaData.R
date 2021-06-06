@@ -41,20 +41,21 @@ rt <- prepare_chi(jieguo3)
 chiResult <- differential_cnv(rt)
 
 ## ---- message=FALSE, warning=FALSE--------------------------------------------
-aa <- c("Gene Symbol", "MARCH1", "MARC1", "MARCH1", "MARCH1", "MARCH1")
-bb <- c("GSM1629982", "2.969058399", "4.722410064", "8.165514853", "8.24243893", "8.60815086")
-cc <- c("GSM1629982", "3.969058399", "5.722410064", "7.165514853", "6.24243893", "7.60815086")
-file1 <- data.frame(aa=aa,bb=bb,cc=cc)
-result <- gene_ave(file1)
+aa <- c("MARCH1","MARC1","MARCH1","MARCH1","MARCH1")
+bb <- c(2.969058399,4.722410064,8.165514853,8.24243893,8.60815086)
+cc <- c(3.969058399,5.722410064,7.165514853,6.24243893,7.60815086)
+file_gene_ave <- data.frame(aa=aa,bb=bb,cc=cc)
+colnames(file_gene_ave) <- c("Gene", "GSM1629982", "GSM1629983")
+result <- gene_ave(file_gene_ave, 1)
 
 ## -----------------------------------------------------------------------------
 aa <- c("MARCH1 /// MMA","MARC1","MARCH2 /// MARCH3",
         "MARCH3 /// MARCH4","MARCH1")
 bb <- c("2.969058399","4.722410064","8.165514853","8.24243893","8.60815086")
 cc <- c("3.969058399","5.722410064","7.165514853","6.24243893","7.60815086")
-input_fil <- data.frame(aa=aa,bb=bb,cc=cc)
-rep1_result <- rep1(input_fil," /// ")
-rep1_result <- rep2(input_fil," /// ")
+input_file <- data.frame(aa=aa,bb=bb,cc=cc)
+rep1_result <- rep1(input_file," /// ")
+rep2_result <- rep2(input_file," /// ")
 
 ## -----------------------------------------------------------------------------
 id_conversion_vector("symbol", "ensembl_gene_id", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
