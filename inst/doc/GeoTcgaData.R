@@ -5,40 +5,93 @@ knitr::opts_chunk$set(
 )
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  install.packages("GeoTcgaData")
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
 #  if(!requireNamespace("devtools", quietly = TRUE))
 #      install.packages("devtools")
 #  devtools::install_github("huerqiang/GeoTcgaData")
-
-## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
-#  install.packages("GeoTcgaData")
 
 ## -----------------------------------------------------------------------------
 library(GeoTcgaData)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
-#  library(DESeq2)
-#  profile2 <- classify_sample(kegg_liver)
-#  jieguo <- diff_gene(profile2)
+#  library(TCGAbiolinks)
+#  query <- GDCquery(project = "TCGA-ACC",
+#                    data.category = "DNA Methylation",
+#                    data.type = "Methylation Beta Value",
+#                    platform = "Illumina Human Methylation 450")
+#  GDCdownload(query, method = "api", files.per.chunk = 5, directory = Your_Path)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
-#  dirr = system.file(file.path("extdata","methy"),package="GeoTcgaData")
-#  merge_result <- Merge_methy_tcga(dirr)
+#  merge_result <- Merge_methy_tcga(Your_Path_to_DNA_Methylation_data)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
-#  metadatafile_name <- "metadata.cart.2018-11-09.json"
-#  jieguo2 <- ann_merge(dirr = system.file(file.path("extdata","cnv"),package="GeoTcgaData"),metadatafile=metadatafile_name)
+#  library(ChAMP)
+#  diff_gene <- methyDiff(cpgData = merge_result, sampleGroup = sample(c("C","T"),
+#      ncol(merge_result[[1]]), replace = TRUE))
 
-## ---- message=FALSE, warning=FALSE--------------------------------------------
-jieguo3 <- matrix(c(-1.09150,-1.47120,-0.87050,-0.50880,
--0.50880,2.0,2.0,2.0,2.0,2.0,2.601962,2.621332,2.621332,
-                    2.621332,2.621332,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,
-                    2.0,2.0,2.0,2.0,2.0,2.0,2.0),nrow=5)
-rownames(jieguo3) <- c("AJAP1", "FHAD1", "CLCNKB", "CROCCP2", "AL137798.3")
-colnames(jieguo3) <- c("TCGA-DD-A4NS-10A-01D-A30U-01", "TCGA-ED-A82E-01A-11D-A34Y-01", 
-"TCGA-WQ-A9G7-01A-11D-A36W-01", "TCGA-DD-AADN-01A-11D-A40Q-01", 
-"TCGA-ZS-A9CD-10A-01D-A36Z-01", "TCGA-DD-A1EB-11A-11D-A12Y-01")
-rt <- prepare_chi(jieguo3)
-chiResult <- differential_cnv(rt)
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  diff_gene$p.adj <- p.adjust(diff_gene$pvalue)
+#  genes <- diff_gene[diff_gene$p.adj < 0.05, "gene"]
+#  library(clusterProfiler)
+#  library(enrichplot)
+#  library(org.Hs.eg.db)
+#  ego <- enrichGO(gene = genes, OrgDb = org.Hs.eg.db, keyType = "SYMBOL")
+#  dotplot(ego)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  library(TCGAbiolinks)
+#  query <- GDCquery(project = "TCGA-LGG",
+#                    data.category = "Copy Number Variation",
+#                    data.type = "Gene Level Copy Number Scores")
+#  
+#  GDCdownload(query, method = "api", files.per.chunk = 5, directory = Your_Path)
+#  
+#  data <- GDCprepare(query = query,
+#                     directory =  "Your_Path")
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  class(data) <- "data.frame"
+#  cnvData <- data[, -c(1,2,3)]
+#  rownames(cnvData) <- data[, 1]
+#  sampleGroup  = sample(c("A","B"), ncol(cnvData), replace = TRUE)
+#  diffCnv <- diff_CNV(cnvData, sampleGroup)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  pvalues <- diffCnv$pvalue * sign(diffCnv$odds)
+#  genes <- rownames(diffCnv)[diffCnv$pvalue < 0.05]
+#  library(clusterProfiler)
+#  library(enrichplot)
+#  library(org.Hs.eg.db)
+#  ego <- enrichGO(gene = genes, OrgDb = org.Hs.eg.db, keyType = "ENSEMBL")
+#  dotplot(ego)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  library(TCGAbiolinks)
+#  query <- GDCquery(project = "TCGA-ACC",
+#                    data.category = "Simple Nucleotide Variation",
+#                    data.type = "Masked Somatic Mutation",
+#                    workflow.type = "MuSE Variant Aggregation and Masking")
+#  
+#  GDCdownload(query, method = "api", files.per.chunk = 5, directory = Your_Path)
+#  
+#  data_snp <- GDCprepare(query = query,
+#                     directory =  "Your_Path")
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  samples <- unique(data_snp$Tumor_Sample_Barcode)
+#  sampleType <- sample(c("A","B"), length(samples), replace = TRUE)
+#  names(sampleType) <- samples
+#  pvalue <- diff_SNP_tcga(snpData = data_snp, sampleType = sampleType)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  pvalue2 <- sort(pvalue, decreasing = TRUE)
+#  library(clusterProfiler)
+#  library(enrichplot)
+#  library(org.Hs.eg.db)
+#  gsego <- gseGO(pvalue2, OrgDb = org.Hs.eg.db, keyType = "SYMBOL")
+#  dotplot(gsego)
 
 ## ---- message=FALSE, warning=FALSE--------------------------------------------
 aa <- c("MARCH1","MARC1","MARCH1","MARCH1","MARCH1")
@@ -62,6 +115,10 @@ id_conversion_vector("symbol", "ensembl_gene_id", c("A2ML1", "A2ML1-AS1", "A4GAL
 
 ## -----------------------------------------------------------------------------
 result <- id_conversion(profile)
+
+## -----------------------------------------------------------------------------
+library(clusterProfiler)
+bitr(c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS"), fromType = "SYMBOL", toType = "ENSEMBL", OrgDb = org.Hs.eg.db, drop = FALSE)
 
 ## -----------------------------------------------------------------------------
 lung_squ_count2 <- matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
