@@ -7,7 +7,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' library(org.Hs.eg.db)
+#' profile <- GeoTcgaData::profile
 #' result <- id_conversion(profile)
+#' }
 id_conversion<-function(profiles, toType = "SYMBOL"){  
     # rownames(profiles) <- unlist(lapply(rownames(profiles), function(x) unlist(strsplit(x,"\\."))[1]))
     # file3 <- hgnc
@@ -20,7 +24,7 @@ id_conversion<-function(profiles, toType = "SYMBOL"){
     ## use clusterProfiler::bitr to convert gene id
     rownames(profiles) <- unlist(lapply(rownames(profiles), function(x) unlist(strsplit(x,"\\."))[1]))
     genes <- clusterProfiler::bitr(rownames(profiles), fromType = "ENSEMBL", 
-        toType = toType, OrgDb = "org.Hs.eg.db", drop = FALSE)[, 2]
+        toType = toType, OrgDb = org.Hs.eg.db::org.Hs.eg.db, drop = FALSE)[, 2]
     profiles_new <- profiles[!is.na(genes), ]
     rownames(profiles_new) <- genes[!is.na(genes)]
     profiles_new

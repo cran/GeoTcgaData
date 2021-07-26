@@ -16,6 +16,48 @@ knitr::opts_chunk$set(
 library(GeoTcgaData)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  # download RNA-seq data
+#  library(TCGAbiolinks)
+#  
+#  query <- GDCquery(project = "TCGA-ACC",
+#                    data.category = "Transcriptome Profiling",
+#                    data.type = "Gene Expression Quantification",
+#                    workflow.type = "HTSeq - Counts")
+#  
+#  GDCdownload(query, method = "api", files.per.chunk = 3,
+#      directory = Your_Path)
+#  
+#  dataRNA <- GDCprepare(query = query, directory = Your_Path,
+#                        save = TRUE, save.filename = "dataRNA.RData")
+#  ## get raw count matrix
+#  dataPrep <- TCGAanalyze_Preprocessing(object = dataRNA,
+#                                        cor.cut = 0.6,
+#                                        datatype = "HTSeq - Counts")
+#  
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  ## Random value is used as gene length and GC content.
+#  geneLength <- sample(1000:2000, nrow(dataPrep), replace = TRUE)
+#  names(geneLength) <- colnames(dataPrep)
+#  gccontent <- runif(nrow(dataPrep))
+#  names(gccontent) <- colnames(dataPrep)
+#  ## Random value is used as sample group.
+#  group <- sample(c("grp1", "grp2"), ncol(dataPrep), replace = TRUE)
+#  library(cqn) # To avoid reporting errors: there is no function "rq"
+#  DEGAll <- diff_RNA(counts = dataPrep, group = group,
+#                     geneLength = geneLength, gccontent = gccontent)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  diffGenes <- DEGAll$logFC
+#  names(diffGenes) <- rownames(DEGAll)
+#  diffGenes <- sort(diffGenes, decreasing = TRUE)
+#  library(clusterProfiler)
+#  library(enrichplot)
+#  library(org.Hs.eg.db)
+#  gsego <- gseGO(gene = diffGenes, OrgDb = org.Hs.eg.db, keyType = "ENSEMBL")
+#  dotplot(gsego)
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
 #  library(TCGAbiolinks)
 #  query <- GDCquery(project = "TCGA-ACC",
 #                    data.category = "DNA Methylation",
@@ -113,12 +155,15 @@ rep2_result <- rep2(input_file," /// ")
 ## -----------------------------------------------------------------------------
 id_conversion_vector("symbol", "ensembl_gene_id", c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS")) 
 
-## -----------------------------------------------------------------------------
-result <- id_conversion(profile)
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  profile <- GeoTcgaData::profile
+#  result <- id_conversion(profile)
 
 ## -----------------------------------------------------------------------------
 library(clusterProfiler)
-bitr(c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS"), fromType = "SYMBOL", toType = "ENSEMBL", OrgDb = org.Hs.eg.db, drop = FALSE)
+library(org.Hs.eg.db)
+bitr(c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS"), fromType = "SYMBOL", 
+    toType = "ENSEMBL", OrgDb = org.Hs.eg.db, drop = FALSE)
 
 ## -----------------------------------------------------------------------------
 lung_squ_count2 <- matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
