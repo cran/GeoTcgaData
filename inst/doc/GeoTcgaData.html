@@ -157,9 +157,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation, single nucleotide Variation and Copy number variation data. It’s easy to download data from TCGA using the gdc tool or <code>TCGAbiolinks</code>, but processing these data into a format suitable for bioinformatics analysis requires more work. This R package was developed to handle these data.</p>
+<p>GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation, single nucleotide Variation and Copy number variation data. It’s easy to download data from TCGA using the gdc tool or <code>TCGAbiolinks</code>, and some software provides organized TCGA data, such as <a href="http://xena.ucsc.edu/">UCSC Xena</a>，but processing these data into a format suitable for bioinformatics analysis requires more work. This R package was developed to handle these data.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GeoTcgaData)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello, friend! welcome to use!</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  =============================================================</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Hello, friend! welcome to use GeoTcgaData!                   </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -------------------------------------------------------------</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Version:1.0.1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  =============================================================</span></span></code></pre></div>
 </div>
 <div id="common-operations-on-geotcgadata" class="section level2">
 <h2>Common operations on GeoTcgaData</h2>
@@ -189,17 +193,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>dataPrep <span class="ot">&lt;-</span> <span class="fu">TCGAanalyze_Preprocessing</span>(<span class="at">object =</span> dataRNA,</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">cor.cut =</span> <span class="fl">0.6</span>,</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">datatype =</span> <span class="st">&quot;HTSeq - Counts&quot;</span>)</span></code></pre></div>
-<p>Use <code>diff_RNA</code> to do difference analysis</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Random value is used as gene length and GC content.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>geneLength <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">2000</span>, <span class="fu">nrow</span>(dataPrep), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneLength) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(dataPrep)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>gccontent <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(dataPrep))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gccontent) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(dataPrep)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Random value is used as sample group.</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;grp1&quot;</span>, <span class="st">&quot;grp2&quot;</span>), <span class="fu">ncol</span>(dataPrep), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cqn) <span class="co"># To avoid reporting errors: there is no function &quot;rq&quot;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>DEGAll <span class="ot">&lt;-</span> <span class="fu">diff_RNA</span>(<span class="at">counts =</span> dataPrep, <span class="at">group =</span> group, </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">geneLength =</span> geneLength, <span class="at">gccontent =</span> gccontent)</span></code></pre></div>
+<p>Use <code>diff_RNA</code> to do difference analysis. We provide the data of human gene length and GC content in <code>gene_cov</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;grp1&quot;</span>, <span class="st">&quot;grp2&quot;</span>), <span class="fu">ncol</span>(dataPrep), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cqn) <span class="co"># To avoid reporting errors: there is no function &quot;rq&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## get gene length and GC content</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>genes_bitr <span class="ot">&lt;-</span> <span class="fu">bitr</span>(<span class="fu">rownames</span>(gene_cov), <span class="at">fromType =</span> <span class="st">&quot;ENTREZID&quot;</span>, <span class="at">toType =</span> <span class="st">&quot;ENSEMBL&quot;</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">drop =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>genes_bitr <span class="ot">&lt;-</span> genes_bitr[<span class="sc">!</span><span class="fu">duplicated</span>(genes_bitr[,<span class="dv">2</span>]), ]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>gene_cov2 <span class="ot">&lt;-</span> gene_cov[genes_bitr<span class="sc">$</span>ENTREZID, ]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(gene_cov2) <span class="ot">&lt;-</span> genes_bitr<span class="sc">$</span>ENSEMBL</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">rownames</span>(dataPrep), <span class="fu">rownames</span>(gene_cov2))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>dataPrep <span class="ot">&lt;-</span> dataPrep[genes, ]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>geneLength <span class="ot">&lt;-</span> gene_cov2[genes, <span class="st">&quot;length&quot;</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>gccontent <span class="ot">&lt;-</span> gene_cov2[genes, <span class="st">&quot;GC&quot;</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneLength) <span class="ot">&lt;-</span> <span class="fu">names</span>(gccontent) <span class="ot">&lt;-</span> genes</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  Difference analysis</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>DEGAll <span class="ot">&lt;-</span> <span class="fu">diff_RNA</span>(<span class="at">counts =</span> dataPrep, <span class="at">group =</span> group, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">geneLength =</span> geneLength, <span class="at">gccontent =</span> gccontent)</span></code></pre></div>
 <p>Use <code>clusterProfiler</code> to do enrichment analytics:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diffGenes <span class="ot">&lt;-</span> DEGAll<span class="sc">$</span>logFC</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(diffGenes) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(DEGAll)</span>
@@ -414,6 +425,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The function <code>tcga_cli_deal</code> could combine clinical information obtained from TCGA and extract survival data. For example:</li>
 </ol>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tcga_cli <span class="ot">&lt;-</span> <span class="fu">tcga_cli_deal</span>(<span class="fu">system.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;tcga_cli&quot;</span>),<span class="at">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>))</span></code></pre></div>
+<p><strong>Note:</strong> Now the combined clinical data can be downloaded directly from <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/TCGAbiolinks/inst/doc/clinical.html">TCGAbiolinks</a>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## get BCR Biotab data</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Clinical&quot;</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Clinical Supplement&quot;</span>, </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.format =</span> <span class="st">&quot;BCR Biotab&quot;</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>clinical.BCRtab.all <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clinical.BCRtab.all)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">## get indexed data</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">GDCquery_clinic</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, <span class="at">type =</span> <span class="st">&quot;clinical&quot;</span>)</span></code></pre></div>
 </div>
 
 
