@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
 #  if(!requireNamespace("devtools", quietly = TRUE))
 #      install.packages("devtools")
-#  devtools::install_github("huerqiang/GeoTcgaData")
+#  devtools::install_github("YuLab-SMU/GeoTcgaData")
 
 ## -----------------------------------------------------------------------------
 library(GeoTcgaData)
@@ -22,7 +22,7 @@ library(GeoTcgaData)
 #  query <- GDCquery(project = "TCGA-ACC",
 #                    data.category = "Transcriptome Profiling",
 #                    data.type = "Gene Expression Quantification",
-#                    workflow.type = "HTSeq - Counts")
+#                    workflow.type = "STAR - Counts")
 #  
 #  GDCdownload(query, method = "api", files.per.chunk = 3,
 #      directory = Your_Path)
@@ -32,7 +32,7 @@ library(GeoTcgaData)
 #  ## get raw count matrix
 #  dataPrep <- TCGAanalyze_Preprocessing(object = dataRNA,
 #                                        cor.cut = 0.6,
-#                                        datatype = "HTSeq - Counts")
+#                                        datatype = "STAR - Counts")
 #  
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
@@ -76,9 +76,26 @@ library(GeoTcgaData)
 #  merge_result <- Merge_methy_tcga(Your_Path_to_DNA_Methylation_data)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
-#  library(ChAMP)
+#  if (!requireNamespace("ChAMP", quietly = TRUE))
+#      BiocManager::install("ChAMP")
+#  library(ChAMP) # To avoid reporting errors
 #  diff_gene <- methyDiff(cpgData = merge_result, sampleGroup = sample(c("C","T"),
 #      ncol(merge_result[[1]]), replace = TRUE))
+
+## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
+#  methy_file <- "TCGA.THCA.sampleMap_HumanMethylation450.gz"
+#  methy <- fread(methy_file, sep = "\t", header = T)
+#  library(ChAMP)
+#  myImport <- champ.import(directory=system.file("extdata",package="ChAMPdata"))
+#  myfilter <- champ.filter(beta=myImport$beta,pd=myImport$pd,detP=myImport$detP,beadcount=myImport$beadcount)
+#  cpg_gene <- hm450.manifest.hg19[, c("probeID", "gene_HGNC")]
+#  ## or use IlluminaHumanMethylation450kanno.ilmn12.hg19 to get annotation data
+#  library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
+#  # ann <- getAnnotation(IlluminaHumanMethylation450kanno.ilmn12.hg19)
+#  # class(ann) <- "data.frame"
+#  # cpg_gene <- ann[,c("Name", "UCSC_RefGene_Name", "UCSC_RefGene_Group")]
+#  
+#  methy_df <- methyDiff_ucsc(methy, cpg_gene)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE--------------------------------
 #  diff_gene$p.adj <- p.adjust(diff_gene$pvalue)

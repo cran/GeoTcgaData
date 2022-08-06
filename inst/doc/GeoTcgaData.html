@@ -14,7 +14,19 @@
 
 <title>The useage of GeoTcgaData</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -24,6 +36,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -38,6 +51,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -124,7 +138,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -144,7 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="authors" class="section level2">
 <h2>Authors</h2>
 <p>Erqiang Hu</p>
-<p>College of Bioinformatics Science and Technology, Harbin Medical University</p>
+<p>Department of Bioinformatics, School of Basic Medical Sciences,
+Southern Medical University.</p>
 </div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
@@ -153,28 +348,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Or the development version from github:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;huerqiang/GeoTcgaData&quot;</span>)</span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;YuLab-SMU/GeoTcgaData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation, single nucleotide Variation and Copy number variation data. It’s easy to download data from TCGA using the gdc tool or <code>TCGAbiolinks</code>, and some software provides organized TCGA data, such as <a href="http://xena.ucsc.edu/">UCSC Xena</a>，but processing these data into a format suitable for bioinformatics analysis requires more work. This R package was developed to handle these data.</p>
+<p>GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA
+Methylation, single nucleotide Variation and Copy number variation data.
+It’s easy to download data from TCGA using the gdc tool or
+<code>TCGAbiolinks</code>, and some software provides organized TCGA
+data, such as <a href="http://xena.ucsc.edu/">UCSC Xena</a> ,
+UCSCXenaTools, and <a href="http://vip.sangerbox.com/">sangerbox</a>,
+but processing these data into a format suitable for bioinformatics
+analysis requires more work. This R package was developed to handle
+these data.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GeoTcgaData)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  =============================================================</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Hello, friend! welcome to use GeoTcgaData!                   </span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -------------------------------------------------------------</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Version:1.0.2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Version:1.1.0</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  =============================================================</span></span></code></pre></div>
 </div>
-<div id="common-operations-on-geotcgadata" class="section level2">
-<h2>Common operations on GeoTcgaData</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<p>This is a basic example which shows you how to solve a common
+problem:</p>
 </div>
-<div id="rna-seq-data-integration-and-differential-gene-extraction" class="section level2">
-<h2>RNA-seq data integration and differential gene extraction</h2>
-<p>It is convenient to use <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/TCGAbiolinks/inst/doc/analysis.html"><code>TCGAbiolinks</code></a> or <a href="https://bioconductor.org/packages/GDCRNATools/"><code>GDCRNATools</code></a> to download and analysis Gene expression data. <code>TCGAbiolinks</code> use <code>edgeR</code> package to do differential expression analysis, while <code>GDCRNATools</code> can implement three most commonly used methods: limma, edgeR , and DESeq2 to identify differentially expressed genes (DEGs).</p>
-<p>However, unlike the chip data, the RNA-seq data had one <a href="https://pubmed.ncbi.nlm.nih.gov/20132535/">bias</a>: the longer the gene, the more likely it was to be identified as a differential gene, <a href="https://pubmed.ncbi.nlm.nih.gov/19371405/">while there was no such trend in the chip data</a>. This is because in RNA-seq data a long gene has more reads mapping to it compared to a short gene of similar expression, and most of the statistical methods used to detect differential expression have stronger detection ability for genes with more reads. Therefore, we need to correct the gene length bias in downstream analysis such as enrichment analysis.</p>
-<p><a href="http://bioconductor.org/packages/goseq/">GOseq</a> based on <a href="https://en.wikipedia.org/wiki/Wallenius%27_noncentral_hypergeometric_distribution">Wallenius’ noncentral hypergeometric distribution</a> can effectively correct the gene length deviation in enrichment analysis. However, its algorithm can not directly correct the deviation of the expression profile, and its results can not be used for GSEA enrichment analysis. <a href="http://www.bioconductor.org/packages/cqn/">CQN</a> present a <a href="https://pubmed.ncbi.nlm.nih.gov/22285995/">normalization algorithm</a> to correct systematic biases(gene length bias and <a href="https://pubmed.ncbi.nlm.nih.gov/22177264/">GC-content bias</a>), whose result can be seamlessly docked with downstream difference analysis software such as DESeq2 and edgeR.</p>
-<p>Here we use <code>TCGAbiolinks</code> to download RNA-seq data, use <code>CQN</code> to correct gene length bias and GC content bias, and then use <code>DESeq2</code> for difference analysis.</p>
+<div id="rna-seq-data-differential-expression-analysis" class="section level2">
+<h2>RNA-seq data differential expression analysis</h2>
+<p>It is convenient to use <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/TCGAbiolinks/inst/doc/analysis.html"><code>TCGAbiolinks</code></a>
+or <a href="https://bioconductor.org/packages/GDCRNATools/"><code>GDCRNATools</code></a>
+to download and analysis Gene expression data. <code>TCGAbiolinks</code>
+use <code>edgeR</code> package to do differential expression analysis,
+while <code>GDCRNATools</code> can implement three most commonly used
+methods: limma, edgeR , and DESeq2 to identify differentially expressed
+genes (DEGs).</p>
+<p>However, unlike the chip data, the RNA-seq data had one <a href="https://pubmed.ncbi.nlm.nih.gov/20132535/">bias</a>: the larger
+the transcript length / mean read count, the more likely it was to be
+identified as a differential gene, <a href="https://pubmed.ncbi.nlm.nih.gov/19371405/">while there was no such
+trend in the chip data</a>. It is worse noting that <a href="https://pubmed.ncbi.nlm.nih.gov/28545404/">only technical
+replicate data, which has small gene dispersions, shows this bias</a>.
+This is because in technical replicate RNA-seq data a long gene has more
+reads mapping to it compared to a short gene of similar expression, and
+most of the statistical methods used to detect differential expression
+have stronger detection ability for genes with more reads. However, we
+have not deduced why there is such a bias in the current difference
+analysis algorithms.</p>
+<p>Some software, such as <a href="http://www.bioconductor.org/packages/cqn/">CQN</a> , present a <a href="https://pubmed.ncbi.nlm.nih.gov/22285995/">normalization
+algorithm</a> to correct systematic biases(gene length bias and <a href="https://pubmed.ncbi.nlm.nih.gov/22177264/">GC-content bias</a>.
+But they did not provide sufficient evidence to prove that the
+correction is effective. We use the <a href="https://pubmed.ncbi.nlm.nih.gov/19371405/">Marioni dataset</a> to
+verify the correction effect of CQN and find that there is still a
+deviation after correction.</p>
+<p><a href="http://bioconductor.org/packages/goseq/">GOseq</a> based on
+<a href="https://en.wikipedia.org/wiki/Wallenius%27_noncentral_hypergeometric_distribution">Wallenius’
+noncentral hypergeometric distribution</a> can effectively correct the
+gene length deviation in enrichment analysis. However, its algorithm can
+not directly correct the deviation of the expression profile, and its
+results can not be used for GSEA enrichment analysis.</p>
+<p>Therefore, read count bias correction is still a challenge for
+us.</p>
 <p>use <code>TCGAbiolinks</code> to download TCGA data</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download RNA-seq data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
@@ -182,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Transcriptome Profiling&quot;</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Gene Expression Quantification&quot;</span>, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">workflow.type =</span> <span class="st">&quot;HTSeq - Counts&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">workflow.type =</span> <span class="st">&quot;STAR - Counts&quot;</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  </span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">3</span>, </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">directory =</span> Your_Path)</span>
@@ -192,8 +424,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">## get raw count matrix                         </span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>dataPrep <span class="ot">&lt;-</span> <span class="fu">TCGAanalyze_Preprocessing</span>(<span class="at">object =</span> dataRNA,</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">cor.cut =</span> <span class="fl">0.6</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">datatype =</span> <span class="st">&quot;HTSeq - Counts&quot;</span>)</span></code></pre></div>
-<p>Use <code>diff_RNA</code> to do difference analysis. We provide the data of human gene length and GC content in <code>gene_cov</code>.</p>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">datatype =</span> <span class="st">&quot;STAR - Counts&quot;</span>)</span></code></pre></div>
+<p>Use <code>diff_RNA</code> to do difference analysis. We provide the
+data of human gene length and GC content in <code>gene_cov</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;grp1&quot;</span>, <span class="st">&quot;grp2&quot;</span>), <span class="fu">ncol</span>(dataPrep), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cqn) <span class="co"># To avoid reporting errors: there is no function &quot;rq&quot;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## get gene length and GC content</span></span>
@@ -223,214 +456,271 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="dna-methylation-data-integration" class="section level2">
 <h2>DNA Methylation data integration</h2>
-<p>use <code>TCGAbiolinks</code> to download TCGA data</p>
+<p>use <code>TCGAbiolinks</code> to download TCGA data.</p>
+<p>The codes may need to be modified if <code>TCGAbiolinks</code>
+updates. So please read its <a href="https://www.bioconductor.org/packages/release/bioc/html/TCGAbiolinks.html">documents</a>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;DNA Methylation&quot;</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Methylation Beta Value&quot;</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">platform =</span> <span class="st">&quot;Illumina Human Methylation 450&quot;</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">5</span>, <span class="at">directory =</span> Your_Path)</span></code></pre></div>
-<p>The function Merge_methy_tcga could Merge methylation data downloaded from TCGA official website or TCGAbiolinks. This makes it easier to extract differentially methylated genes in the downstream analysis. For example:</p>
+<p>The function Merge_methy_tcga could Merge methylation data downloaded
+from TCGA official website or TCGAbiolinks. This makes it easier to
+extract differentially methylated genes in the downstream analysis. For
+example:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>merge_result <span class="ot">&lt;-</span> <span class="fu">Merge_methy_tcga</span>(Your_Path_to_DNA_Methylation_data)</span></code></pre></div>
 <p>Then use <code>ChAMP</code> package to do difference analysis.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ChAMP)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>diff_gene <span class="ot">&lt;-</span> <span class="fu">methyDiff</span>(<span class="at">cpgData =</span> merge_result, <span class="at">sampleGroup =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>), </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ncol</span>(merge_result[[<span class="dv">1</span>]]), <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;ChAMP&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ChAMP&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ChAMP) <span class="co"># To avoid reporting errors</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>diff_gene <span class="ot">&lt;-</span> <span class="fu">methyDiff</span>(<span class="at">cpgData =</span> merge_result, <span class="at">sampleGroup =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>), </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ncol</span>(merge_result[[<span class="dv">1</span>]]), <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p><strong>Note:</strong> <code>ChAMP</code>has a large number of
+dependent packages. If you cannot install it successfully, you can
+download each dependent package separately(Source or Binary) and install
+it locally.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>methy_file <span class="ot">&lt;-</span> <span class="st">&quot;TCGA.THCA.sampleMap_HumanMethylation450.gz&quot;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>methy <span class="ot">&lt;-</span> <span class="fu">fread</span>(methy_file, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ChAMP)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>myImport <span class="ot">&lt;-</span> <span class="fu">champ.import</span>(<span class="at">directory=</span><span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="at">package=</span><span class="st">&quot;ChAMPdata&quot;</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>myfilter <span class="ot">&lt;-</span> <span class="fu">champ.filter</span>(<span class="at">beta=</span>myImport<span class="sc">$</span>beta,<span class="at">pd=</span>myImport<span class="sc">$</span>pd,<span class="at">detP=</span>myImport<span class="sc">$</span>detP,<span class="at">beadcount=</span>myImport<span class="sc">$</span>beadcount)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>cpg_gene <span class="ot">&lt;-</span> hm450.manifest.hg19[, <span class="fu">c</span>(<span class="st">&quot;probeID&quot;</span>, <span class="st">&quot;gene_HGNC&quot;</span>)]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## or use IlluminaHumanMethylation450kanno.ilmn12.hg19 to get annotation data</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(IlluminaHumanMethylation450kanno.ilmn12.hg19)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ann &lt;- getAnnotation(IlluminaHumanMethylation450kanno.ilmn12.hg19)</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># class(ann) &lt;- &quot;data.frame&quot;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># cpg_gene &lt;- ann[,c(&quot;Name&quot;, &quot;UCSC_RefGene_Name&quot;, &quot;UCSC_RefGene_Group&quot;)]</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>methy_df <span class="ot">&lt;-</span> <span class="fu">methyDiff_ucsc</span>(methy, cpg_gene)</span></code></pre></div>
+<p>We provide three models to get methylation difference genes:</p>
+<p>if model = “cpg”, step1: calculate difference cpgs; step2: calculate
+difference genes;</p>
+<p>if model = “gene”, step1: calculate the methylation level of genes;
+step2: calculate difference genes.</p>
+<p>We find that only model = “gene” has no deviation of CpG number.</p>
 <p>Use <code>clusterProfiler</code> to do enrichment analytics:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>diff_gene<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(diff_gene<span class="sc">$</span>pvalue)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> diff_gene[diff_gene<span class="sc">$</span>p.adj <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">&quot;gene&quot;</span>]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> genes, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;SYMBOL&quot;</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diff_gene<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(diff_gene<span class="sc">$</span>pvalue)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> diff_gene[diff_gene<span class="sc">$</span>p.adj <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">&quot;gene&quot;</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> genes, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;SYMBOL&quot;</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego)</span></code></pre></div>
 </div>
 <div id="copy-number-variation-data-integration-and-differential-gene-extraction" class="section level2">
-<h2>Copy number variation data integration and differential gene extraction</h2>
-<p>use TCGAbiolinks to download TCGA data(Gene Level Copy Number Scores)</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-LGG&quot;</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Copy Number Variation&quot;</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Gene Level Copy Number Scores&quot;</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">5</span>, <span class="at">directory =</span> Your_Path)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(<span class="at">query =</span> query, </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">directory =</span>  <span class="st">&quot;Your_Path&quot;</span>) </span></code></pre></div>
-<p>Do difference analysis of gene level copy number variation data using <code>diff_CNV</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data) <span class="ot">&lt;-</span> <span class="st">&quot;data.frame&quot;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cnvData <span class="ot">&lt;-</span> data[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cnvData) <span class="ot">&lt;-</span> data[, <span class="dv">1</span>]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>sampleGroup  <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>), <span class="fu">ncol</span>(cnvData), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>diffCnv <span class="ot">&lt;-</span> <span class="fu">diff_CNV</span>(cnvData, sampleGroup)</span></code></pre></div>
+<h2>Copy number variation data integration and differential gene
+extraction</h2>
+<p>use TCGAbiolinks to download TCGA data(Gene Level Copy Number
+Scores)</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-LGG&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Copy Number Variation&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Gene Level Copy Number Scores&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">5</span>, <span class="at">directory =</span> Your_Path)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(<span class="at">query =</span> query, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">directory =</span>  <span class="st">&quot;Your_Path&quot;</span>) </span></code></pre></div>
+<p>Do difference analysis of gene level copy number variation data using
+<code>diff_CNV</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data) <span class="ot">&lt;-</span> <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cnvData <span class="ot">&lt;-</span> data[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cnvData) <span class="ot">&lt;-</span> data[, <span class="dv">1</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sampleGroup  <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>), <span class="fu">ncol</span>(cnvData), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>diffCnv <span class="ot">&lt;-</span> <span class="fu">diff_CNV</span>(cnvData, sampleGroup)</span></code></pre></div>
 <p>Use <code>clusterProfiler</code> to do enrichment analytics:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pvalues <span class="ot">&lt;-</span> diffCnv<span class="sc">$</span>pvalue <span class="sc">*</span> <span class="fu">sign</span>(diffCnv<span class="sc">$</span>odds)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(diffCnv)[diffCnv<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> genes, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;ENSEMBL&quot;</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pvalues <span class="ot">&lt;-</span> diffCnv<span class="sc">$</span>pvalue <span class="sc">*</span> <span class="fu">sign</span>(diffCnv<span class="sc">$</span>odds)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(diffCnv)[diffCnv<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> genes, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;ENSEMBL&quot;</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego)</span></code></pre></div>
 </div>
 <div id="difference-analysis-of-single-nucleotide-variation-data" class="section level2">
 <h2>Difference analysis of single nucleotide Variation data</h2>
 <p>Use TCGAbiolinks to download TCGA data</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">workflow.type =</span> <span class="st">&quot;MuSE Variant Aggregation and Masking&quot;</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">5</span>, <span class="at">directory =</span> Your_Path)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>data_snp <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(<span class="at">query =</span> query, </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">directory =</span>  <span class="st">&quot;Your_Path&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">workflow.type =</span> <span class="st">&quot;MuSE Variant Aggregation and Masking&quot;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query, <span class="at">method =</span> <span class="st">&quot;api&quot;</span>, <span class="at">files.per.chunk =</span> <span class="dv">5</span>, <span class="at">directory =</span> Your_Path)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>data_snp <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(<span class="at">query =</span> query, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">directory =</span>  <span class="st">&quot;Your_Path&quot;</span>) </span></code></pre></div>
 <p>Use <code>diff_SNP_tcga</code> to do difference analysis</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">unique</span>(data_snp<span class="sc">$</span>Tumor_Sample_Barcode)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sampleType <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>), <span class="fu">length</span>(samples), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleType) <span class="ot">&lt;-</span> samples</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">diff_SNP_tcga</span>(<span class="at">snpData =</span> data_snp, <span class="at">sampleType =</span> sampleType)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">unique</span>(data_snp<span class="sc">$</span>Tumor_Sample_Barcode)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sampleType <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>), <span class="fu">length</span>(samples), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sampleType) <span class="ot">&lt;-</span> samples</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">diff_SNP_tcga</span>(<span class="at">snpData =</span> data_snp, <span class="at">sampleType =</span> sampleType)</span></code></pre></div>
 <p>Use <code>clusterProfiler</code> to do enrichment analysis</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pvalue2 <span class="ot">&lt;-</span> <span class="fu">sort</span>(pvalue, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>gsego <span class="ot">&lt;-</span> <span class="fu">gseGO</span>(pvalue2, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;SYMBOL&quot;</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(gsego)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pvalue2 <span class="ot">&lt;-</span> <span class="fu">sort</span>(pvalue, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>gsego <span class="ot">&lt;-</span> <span class="fu">gseGO</span>(pvalue2, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">keyType =</span> <span class="st">&quot;SYMBOL&quot;</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(gsego)</span></code></pre></div>
 </div>
 <div id="geo-chip-data-processing" class="section level2">
 <h2>GEO chip data processing</h2>
-<p>The function <code>gene_ave</code> could average the expression data of different ids for the same gene in the GEO chip data. For example:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.969058399</span>,<span class="fl">4.722410064</span>,<span class="fl">8.165514853</span>,<span class="fl">8.24243893</span>,<span class="fl">8.60815086</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.969058399</span>,<span class="fl">5.722410064</span>,<span class="fl">7.165514853</span>,<span class="fl">6.24243893</span>,<span class="fl">7.60815086</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>file_gene_ave <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">aa=</span>aa,<span class="at">bb=</span>bb,<span class="at">cc=</span>cc)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(file_gene_ave) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gene&quot;</span>, <span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;GSM1629983&quot;</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">gene_ave</span>(file_gene_ave, <span class="dv">1</span>)</span></code></pre></div>
-<p>Multiple genes symbols may correspond to a same chip id. The result of function <code>rep1</code> is to assign the expression of this id to each gene, and function <code>rep2</code> deletes the expression. For example:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MARCH1 /// MMA&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH2 /// MARCH3&quot;</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;MARCH3 /// MARCH4&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2.969058399&quot;</span>,<span class="st">&quot;4.722410064&quot;</span>,<span class="st">&quot;8.165514853&quot;</span>,<span class="st">&quot;8.24243893&quot;</span>,<span class="st">&quot;8.60815086&quot;</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;3.969058399&quot;</span>,<span class="st">&quot;5.722410064&quot;</span>,<span class="st">&quot;7.165514853&quot;</span>,<span class="st">&quot;6.24243893&quot;</span>,<span class="st">&quot;7.60815086&quot;</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">aa=</span>aa,<span class="at">bb=</span>bb,<span class="at">cc=</span>cc)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>rep1_result <span class="ot">&lt;-</span> <span class="fu">rep1</span>(input_file,<span class="st">&quot; /// &quot;</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>rep2_result <span class="ot">&lt;-</span> <span class="fu">rep2</span>(input_file,<span class="st">&quot; /// &quot;</span>)</span></code></pre></div>
+<p>The function <code>gene_ave</code> could average the expression data
+of different ids for the same gene in the GEO chip data. For
+example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.969058399</span>,<span class="fl">4.722410064</span>,<span class="fl">8.165514853</span>,<span class="fl">8.24243893</span>,<span class="fl">8.60815086</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.969058399</span>,<span class="fl">5.722410064</span>,<span class="fl">7.165514853</span>,<span class="fl">6.24243893</span>,<span class="fl">7.60815086</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>file_gene_ave <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">aa=</span>aa,<span class="at">bb=</span>bb,<span class="at">cc=</span>cc)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(file_gene_ave) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gene&quot;</span>, <span class="st">&quot;GSM1629982&quot;</span>, <span class="st">&quot;GSM1629983&quot;</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">gene_ave</span>(file_gene_ave, <span class="dv">1</span>)</span></code></pre></div>
+<p>Multiple genes symbols may correspond to a same chip id. The result
+of function <code>rep1</code> is to assign the expression of this id to
+each gene, and function <code>rep2</code> deletes the expression. For
+example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MARCH1 /// MMA&quot;</span>,<span class="st">&quot;MARC1&quot;</span>,<span class="st">&quot;MARCH2 /// MARCH3&quot;</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;MARCH3 /// MARCH4&quot;</span>,<span class="st">&quot;MARCH1&quot;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2.969058399&quot;</span>,<span class="st">&quot;4.722410064&quot;</span>,<span class="st">&quot;8.165514853&quot;</span>,<span class="st">&quot;8.24243893&quot;</span>,<span class="st">&quot;8.60815086&quot;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;3.969058399&quot;</span>,<span class="st">&quot;5.722410064&quot;</span>,<span class="st">&quot;7.165514853&quot;</span>,<span class="st">&quot;6.24243893&quot;</span>,<span class="st">&quot;7.60815086&quot;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">aa=</span>aa,<span class="at">bb=</span>bb,<span class="at">cc=</span>cc)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>rep1_result <span class="ot">&lt;-</span> <span class="fu">rep1</span>(input_file,<span class="st">&quot; /// &quot;</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>rep2_result <span class="ot">&lt;-</span> <span class="fu">rep2</span>(input_file,<span class="st">&quot; /// &quot;</span>)</span></code></pre></div>
 </div>
 <div id="other-downstream-analyses" class="section level2">
 <h2>Other downstream analyses</h2>
 <ol style="list-style-type: decimal">
-<li>The function <code>id_conversion_vector</code> could convert gene id from one of <code>symbol</code>, <code>RefSeq_ID</code>, <code>Ensembl_ID</code>, <code>NCBI_Gene_ID</code>, <code>UCSC_ID</code>, and <code>UniProt_ID</code> , etc. to another. Use <code>id_ava()</code> to get all the convertible ids. For example:</li>
+<li>The function <code>id_conversion_vector</code> could convert gene id
+from one of <code>symbol</code>, <code>RefSeq_ID</code>,
+<code>Ensembl_ID</code>, <code>NCBI_Gene_ID</code>,
+<code>UCSC_ID</code>, and <code>UniProt_ID</code> , etc. to another. Use
+<code>id_ava()</code> to get all the convertible ids. For example:</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">id_conversion_vector</span>(<span class="st">&quot;symbol&quot;</span>, <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>)) </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 80% were successfully converted.</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        from              to</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     A2ML1 ENSG00000166535</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 A2ML1-AS1 ENSG00000256661</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    A4GALT ENSG00000128274</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      AAAS ENSG00000094914</span></span></code></pre></div>
-<p>When the user converts the Ensembl ID to other ids, the version number needs to be removed. For example, “ENSG00000186092.4” doesn’t work, you need to change it to “ENSG00000186092”.</p>
-<p>Especially, the function <code>id_conversion</code> could convert ENSEMBL gene id to gene Symbol in TCGA. For example:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>profile <span class="ot">&lt;-</span> GeoTcgaData<span class="sc">::</span>profile</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">id_conversion</span>(profile)</span></code></pre></div>
-<p>The parameter <code>profile</code> is a data.frame or matrix of gene expression data in TCGA.</p>
-<p><strong>Note:</strong> In previous versions(&lt; 1.0.0) the <code>id_conversion</code> and <code>id_conversion_vector</code> used HGNC data to convert human gene id. In future versions, we will use <code>clusterProfiler::bitr</code> for ID conversion.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; clusterProfiler v4.1.4.991  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If you use clusterProfiler in published research, please cite:</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;clusterProfiler&#39;</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     filter</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：AnnotationDbi</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：stats4</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：BiocGenerics</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;BiocGenerics&#39;</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Filter, Find, Map, Position, Reduce, anyDuplicated, append,</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     as.data.frame, basename, cbind, colnames, dirname, do.call,</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,</span></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：Biobase</span></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Welcome to Bioconductor</span></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &#39;browseVignettes()&#39;. To cite Bioconductor, see</span></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</span></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：IRanges</span></span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：S4Vectors</span></span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;S4Vectors&#39;</span></span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     rename</span></span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     I, expand.grid, unname</span></span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;IRanges&#39;</span></span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     slice</span></span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:grDevices&#39;:</span></span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     windows</span></span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;AnnotationDbi&#39;</span></span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     select</span></span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a><span class="fu">bitr</span>(<span class="fu">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>), <span class="at">fromType =</span> <span class="st">&quot;SYMBOL&quot;</span>, </span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">toType =</span> <span class="st">&quot;ENSEMBL&quot;</span>, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">drop =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;select()&#39; returned 1:1 mapping between keys and columns</span></span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in bitr(c(&quot;A2ML1&quot;, &quot;A2ML1-AS1&quot;, &quot;A4GALT&quot;, &quot;A12M1&quot;, &quot;AAAS&quot;), fromType =</span></span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &quot;SYMBOL&quot;, : 40% of input gene IDs are fail to map...</span></span>
-<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      SYMBOL         ENSEMBL</span></span>
-<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     A2ML1 ENSG00000166535</span></span>
-<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 A2ML1-AS1            &lt;NA&gt;</span></span>
-<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    A4GALT ENSG00000128274</span></span>
-<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     A12M1            &lt;NA&gt;</span></span>
-<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      AAAS ENSG00000094914</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">id_conversion_vector</span>(<span class="st">&quot;symbol&quot;</span>, <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>)) </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 80% were successfully converted.</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        from              to</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     A2ML1 ENSG00000166535</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 A2ML1-AS1 ENSG00000256661</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    A4GALT ENSG00000128274</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      AAAS ENSG00000094914</span></span></code></pre></div>
+<p>When the user converts the Ensembl ID to other ids, the version
+number needs to be removed. For example, “ENSG00000186092.4” doesn’t
+work, you need to change it to “ENSG00000186092”.</p>
+<p>Especially, the function <code>id_conversion</code> could convert
+ENSEMBL gene id to gene Symbol in TCGA. For example:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>profile <span class="ot">&lt;-</span> GeoTcgaData<span class="sc">::</span>profile</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">id_conversion</span>(profile)</span></code></pre></div>
+<p>The parameter <code>profile</code> is a data.frame or matrix of gene
+expression data in TCGA.</p>
+<p><strong>Note:</strong> In previous versions(&lt; 1.0.0) the
+<code>id_conversion</code> and <code>id_conversion_vector</code> used
+HGNC data to convert human gene id. In future versions, we will use
+<code>clusterProfiler::bitr</code> for ID conversion.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;ggtree&#39;:</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method      from </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   identify.gg ggfun</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; clusterProfiler v4.5.1.904  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If you use clusterProfiler in published research, please cite:</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;clusterProfiler&#39;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     filter</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：AnnotationDbi</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：stats4</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：BiocGenerics</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;BiocGenerics&#39;</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Filter, Find, Map, Position, Reduce, anyDuplicated, append,</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     as.data.frame, basename, cbind, colnames, dirname, do.call,</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：Biobase</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Welcome to Bioconductor</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &#39;browseVignettes()&#39;. To cite Bioconductor, see</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：IRanges</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入需要的程辑包：S4Vectors</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;S4Vectors&#39;</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     rename</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     I, expand.grid, unname</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;IRanges&#39;</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     slice</span></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:grDevices&#39;:</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     windows</span></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 载入程辑包：&#39;AnnotationDbi&#39;</span></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:clusterProfiler&#39;:</span></span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     select</span></span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a><span class="fu">bitr</span>(<span class="fu">c</span>(<span class="st">&quot;A2ML1&quot;</span>, <span class="st">&quot;A2ML1-AS1&quot;</span>, <span class="st">&quot;A4GALT&quot;</span>, <span class="st">&quot;A12M1&quot;</span>, <span class="st">&quot;AAAS&quot;</span>), <span class="at">fromType =</span> <span class="st">&quot;SYMBOL&quot;</span>, </span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">toType =</span> <span class="st">&quot;ENSEMBL&quot;</span>, <span class="at">OrgDb =</span> org.Hs.eg.db, <span class="at">drop =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;select()&#39; returned 1:1 mapping between keys and columns</span></span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in bitr(c(&quot;A2ML1&quot;, &quot;A2ML1-AS1&quot;, &quot;A4GALT&quot;, &quot;A12M1&quot;, &quot;AAAS&quot;), fromType =</span></span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &quot;SYMBOL&quot;, : 40% of input gene IDs are fail to map...</span></span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      SYMBOL         ENSEMBL</span></span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     A2ML1 ENSG00000166535</span></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 A2ML1-AS1            &lt;NA&gt;</span></span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    A4GALT ENSG00000128274</span></span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     A12M1            &lt;NA&gt;</span></span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      AAAS ENSG00000094914</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>The function <code>countToFpkm_matrix</code> and <code>countToTpm_matrix</code> could convert count data to FPKM or TPM data.</li>
+<li>The function <code>countToFpkm_matrix</code> and
+<code>countToTpm_matrix</code> could convert count data to FPKM or TPM
+data.</li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lung_squ_count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>jieguo <span class="ot">&lt;-</span> <span class="fu">countToFpkm_matrix</span>(lung_squ_count2)</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lung_squ_count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.11</span>,<span class="fl">0.22</span>,<span class="fl">0.43</span>,<span class="fl">0.14</span>,<span class="fl">0.875</span>,<span class="fl">0.66</span>,<span class="fl">0.77</span>,<span class="fl">0.18</span>,<span class="fl">0.29</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lung_squ_count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>jieguo <span class="ot">&lt;-</span> <span class="fu">countToTpm_matrix</span>(lung_squ_count2)</span></code></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>jieguo <span class="ot">&lt;-</span> <span class="fu">countToFpkm_matrix</span>(lung_squ_count2)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lung_squ_count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.11</span>,<span class="fl">0.22</span>,<span class="fl">0.43</span>,<span class="fl">0.14</span>,<span class="fl">0.875</span>,<span class="fl">0.66</span>,<span class="fl">0.77</span>,<span class="fl">0.18</span>,<span class="fl">0.29</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DISC1&quot;</span>,<span class="st">&quot;TCOF1&quot;</span>,<span class="st">&quot;SPPL3&quot;</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(lung_squ_count2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>jieguo <span class="ot">&lt;-</span> <span class="fu">countToTpm_matrix</span>(lung_squ_count2)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>The function <code>tcga_cli_deal</code> could combine clinical information obtained from TCGA and extract survival data. For example:</li>
+<li>The function <code>tcga_cli_deal</code> could combine clinical
+information obtained from TCGA and extract survival data. For
+example:</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tcga_cli <span class="ot">&lt;-</span> <span class="fu">tcga_cli_deal</span>(<span class="fu">system.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;tcga_cli&quot;</span>),<span class="at">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>))</span></code></pre></div>
-<p><strong>Note:</strong> Now the combined clinical data can be downloaded directly from <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/TCGAbiolinks/inst/doc/clinical.html">TCGAbiolinks</a>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## get BCR Biotab data</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Clinical&quot;</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Clinical Supplement&quot;</span>, </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.format =</span> <span class="st">&quot;BCR Biotab&quot;</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>clinical.BCRtab.all <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clinical.BCRtab.all)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">## get indexed data</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">GDCquery_clinic</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, <span class="at">type =</span> <span class="st">&quot;clinical&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tcga_cli <span class="ot">&lt;-</span> <span class="fu">tcga_cli_deal</span>(<span class="fu">system.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;tcga_cli&quot;</span>),<span class="at">package=</span><span class="st">&quot;GeoTcgaData&quot;</span>))</span></code></pre></div>
+<p><strong>Note:</strong> Now the combined clinical data can be
+downloaded directly from <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/TCGAbiolinks/inst/doc/clinical.html">TCGAbiolinks</a>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## get BCR Biotab data</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.category =</span> <span class="st">&quot;Clinical&quot;</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.type =</span> <span class="st">&quot;Clinical Supplement&quot;</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data.format =</span> <span class="st">&quot;BCR Biotab&quot;</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>clinical.BCRtab.all <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clinical.BCRtab.all)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="do">## get indexed data</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>clinical <span class="ot">&lt;-</span> <span class="fu">GDCquery_clinic</span>(<span class="at">project =</span> <span class="st">&quot;TCGA-ACC&quot;</span>, <span class="at">type =</span> <span class="st">&quot;clinical&quot;</span>)</span></code></pre></div>
 </div>
 
 

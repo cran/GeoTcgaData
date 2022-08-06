@@ -4,18 +4,37 @@
 \alias{diff_RNA}
 \title{Do difference analysis of RNA-seq data}
 \usage{
-diff_RNA(counts, group, method = "limma", geneLength = NULL, gccontent = NULL)
+diff_RNA(
+  counts,
+  group,
+  method = "limma",
+  geneLength = NULL,
+  gccontent = NULL,
+  filter = TRUE,
+  edgeRNorm = TRUE,
+  adjust.method = "BH",
+  useTopconfects = TRUE
+)
 }
 \arguments{
 \item{counts}{a dataframe or numeric matrix of raw counts data}
 
 \item{group}{sample groups}
 
-\item{method}{one of "DESeq2", "edgeR" and "limma".}
+\item{method}{one of "DESeq2", "edgeR" , "limma", "dearseq" and "Wilcoxon".}
 
 \item{geneLength}{a vector of gene length.}
 
 \item{gccontent}{a vector of gene GC content.}
+
+\item{filter}{if TRUE, use filterByExpr to filter genes.}
+
+\item{edgeRNorm}{if TRUE, use edgeR to do normalization for dearseq method.}
+
+\item{adjust.method}{character string specifying the method used to adjust p-values for multiple testing. 
+See \link{p.adjust} for possible values.}
+
+\item{useTopconfects}{if TRUE, use topconfects to provide a more biologically useful ranked gene list.}
 }
 \description{
 Do difference analysis of RNA-seq data
@@ -27,7 +46,7 @@ library(TCGAbiolinks)
 query <- GDCquery(project = "TCGA-ACC",
                   data.category = "Transcriptome Profiling",
                   data.type = "Gene Expression Quantification", 
-                  workflow.type = "HTSeq - Counts")
+                  workflow.type = "STAR - Counts")
                   
 GDCdownload(query, method = "api", files.per.chunk = 3, 
     directory = Your_Path)
@@ -37,7 +56,7 @@ dataRNA <- GDCprepare(query = query, directory = Your_Path,
 ## get raw count matrix                         
 dataPrep <- TCGAanalyze_Preprocessing(object = dataRNA,
                                       cor.cut = 0.6,
-                                      datatype = "HTSeq - Counts")
+                                      datatype = "STAR - Counts")
 
 # Use `diff_RNA` to do difference analysis. 
 # We provide the data of human gene length and GC content in `gene_cov`.
@@ -50,7 +69,7 @@ genes_bitr <- bitr(rownames(gene_cov), fromType = "ENTREZID", toType = "ENSEMBL"
 genes_bitr <- genes_bitr[!duplicated(genes_bitr[,2]), ]
 gene_cov2 <- gene_cov[genes_bitr$ENTREZID, ]
 rownames(gene_cov2) <- genes_bitr$ENSEMBL
-genes <- intersect(rownames(dataPrep), rownames(gene_cov))
+genes <- intersect(rownames(dataPrep), rownames(gene_cov2))
 dataPrep <- dataPrep[genes, ]
 geneLength <- gene_cov2(genes, "length")
 gccontent <- gene_cov2(genes, "GC")
