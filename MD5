@@ -1,9 +1,9 @@
-e0248c1632119cbf00f9905a686d7a8a *DESCRIPTION
+ddc35c7d75d590969f06a6bccc36e823 *DESCRIPTION
 daa0251c04c6e85218f8ee872cb32f9b *NAMESPACE
 26068e2a23eff45e4b836b5b3ccfde32 *R/CNV.R
 a668d974e9d24b4fd429206901a1b455 *R/Merge_methylation.R
 46d72124b56c6b58c4a66b93d025817b *R/Proce_cli.R
-f3c5a44dc06c78bec9f00dce76342e3f *R/RNA_seq.R
+7eb57303143932685cc717e4f2c277e2 *R/RNA_seq.R
 a49d930463fe29a44e7970cf5cae3f3a *R/SNP.R
 608b03cfdedefad5d40b3bc37fa5f489 *R/TCGA_id_conversion.R
 001b310b9431dfbd580861738859b90a *R/ann_merge.r
@@ -18,7 +18,7 @@ fc47e35b55a389a9218d3c2138ebf559 *R/kegg_diff_gene.R
 6b90322adde66edab7a4e405e69980b0 *R/rep.R
 1cfb7c0b0e9bd2de5eeb3ba0c6687738 *R/sysdata.rda
 4628929452643ee0a1cf158cc9869898 *R/zzz.R
-8740ceae300bb1e5e9a402b1594b45f5 *README.md
+c483778153c5963969cd153b9da1e921 *README.md
 99e6f9abdcf91a2fd857b9d2ef8778e2 *build/vignette.rds
 070dceb636fc0300be4b8976b81f767e *data/GSE66705_sample2.rda
 2c3b1a331bbc035f9c9dacbba7409d53 *data/geneExpress.rda
@@ -29,7 +29,7 @@ e7b32221f71207346295f527d6840298 *data/module.rda
 a2654539d5e3d3141966e92ad9606b4a *data/ventricle.rda
 a089b19d3b556faec39650a2c22a86b9 *inst/doc/GeoTcgaData.R
 01302f6efe0fc72a86efc774be136d2a *inst/doc/GeoTcgaData.Rmd
-5d2f2f0603d9f69b4b08a25d4044c8f1 *inst/doc/GeoTcgaData.html
+1f76022fec806f678c1923708ea11e5a *inst/doc/GeoTcgaData.html
 24b78cdcc2434bb768c734a29f6434bf *inst/extdata/build_data.R
 c1f1064d71b9dd78b25eb2395597f2ba *inst/extdata/cnv/00de3/HONGS_p_TCGAb3_75_76_77_NSP_G.txt
 7dd1340c0458e7a9b8f5bbf7ba634fcc *inst/extdata/cnv/00e8/MICHE_p_TCGAb_428_429_NS.txt

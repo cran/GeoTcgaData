@@ -30,7 +30,7 @@ if(!requireNamespace("devtools", quietly = TRUE))
 devtools::install_github("YuLab-SMU/GeoTcgaData")
 ```
 
-GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation,   single nucleotide Variation and Copy number variation data. It's easy to download data from TCGA using the  gdc tool or `TCGAbiolinks`,  and some software provides organized TCGA data, such as [UCSC Xena](http://xena.ucsc.edu/) , UCSCXenaTools, and [sangerbox](http://vip.sangerbox.com/), but processing these data into a format suitable for bioinformatics  analysis requires more work. This R package was developed to handle these data.
+GEO and TCGA provide us with a wealth of data, such as RNA-seq, DNA Methylation,   single nucleotide Variation and Copy number variation data. It's easy to download data from TCGA using the  gdc tool or `TCGAbiolinks`,  and some software provides organized TCGA data, such as [UCSC Xena](http://xena.ucsc.edu/) , [UCSCXenaTools](https://cran.r-project.org/package=UCSCXenaTools)，and [sangerbox](http://vip.sangerbox.com/), but processing these data into a format suitable for bioinformatics  analysis requires more work. This R package was developed to handle these data.
 
 ## Example
 
@@ -42,6 +42,9 @@ It is convenient to use [`TCGAbiolinks`](http://www.bioconductor.org/packages/re
 However, unlike the chip data, the RNA-seq data had one [bias](https://pubmed.ncbi.nlm.nih.gov/20132535/): the larger the transcript length / mean read count , the more likely it was to be  identified as a differential gene, [while there was no such trend in the chip data](https://pubmed.ncbi.nlm.nih.gov/19371405/). It is worse noting that [only technical replicate data, which has small gene dispersions, shows this bias](https://pubmed.ncbi.nlm.nih.gov/28545404/). This is because in technical replicate RNA-seq data a long gene has more reads mapping to it compared to a short gene of similar expression,  and most of the statistical methods used to detect differential expression  have stronger detection ability for genes with more reads. However, we have not deduced why there is such a bias in the current difference analysis algorithms. 
 
 Some software, such as [CQN](http://www.bioconductor.org/packages/cqn/) , present a [normalization algorithm](https://pubmed.ncbi.nlm.nih.gov/22285995/) to correct systematic biases(gene length bias and [GC-content bias](https://pubmed.ncbi.nlm.nih.gov/22177264/). But they did not provide sufficient evidence to prove that the correction is effective. We use the [Marioni dataset](https://pubmed.ncbi.nlm.nih.gov/19371405/) to verify the correction effect of CQN and find that there is still a deviation after correction:
+
+<img src="marioni_bin_de.jpg" width="890"/>
+
 
 
 
@@ -153,7 +156,7 @@ myImport <- champ.import(directory=system.file("extdata",package="ChAMPdata"))
 myfilter <- champ.filter(beta=myImport$beta,pd=myImport$pd,detP=myImport$detP,beadcount=myImport$beadcount)
 cpg_gene <- hm450.manifest.hg19[, c("probeID", "gene_HGNC")]
 ## or use IlluminaHumanMethylation450kanno.ilmn12.hg19 to get annotation data
-library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
+# library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
 # ann <- getAnnotation(IlluminaHumanMethylation450kanno.ilmn12.hg19)
 # class(ann) <- "data.frame"
 # cpg_gene <- ann[,c("Name", "UCSC_RefGene_Name", "UCSC_RefGene_Group")]
@@ -169,6 +172,7 @@ if model = "gene", step1: calculate the methylation level of genes; step2: calcu
 
 We find that only model = "gene" has no deviation of CpG number. 
 
+<img src="logpvalue_cpgnumber.jpg" width="890"/>
 
 Use `clusterProfiler` to do enrichment analytics:
 
