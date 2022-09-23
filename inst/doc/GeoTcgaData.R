@@ -193,13 +193,15 @@ bitr(c("A2ML1", "A2ML1-AS1", "A4GALT", "A12M1", "AAAS"), fromType = "SYMBOL",
 lung_squ_count2 <- matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
 rownames(lung_squ_count2) <- c("DISC1","TCOF1","SPPL3")
 colnames(lung_squ_count2) <- c("sample1","sample2","sample3")
-jieguo <- countToFpkm_matrix(lung_squ_count2)
+jieguo <- countToFpkm_matrix(lung_squ_count2, keyType = "SYMBOL", 
+                             gene_cov = gene_cov)
 
 ## ---- message=FALSE, warning=FALSE--------------------------------------------
 lung_squ_count2 <- matrix(c(0.11,0.22,0.43,0.14,0.875,0.66,0.77,0.18,0.29),ncol=3)
 rownames(lung_squ_count2) <- c("DISC1","TCOF1","SPPL3")
 colnames(lung_squ_count2) <- c("sample1","sample2","sample3")
-jieguo <- countToTpm_matrix(lung_squ_count2)
+jieguo <- countToTpm_matrix(lung_squ_count2, keyType = "SYMBOL", 
+                            gene_cov = gene_cov)
 
 ## ---- message=FALSE, warning=FALSE--------------------------------------------
 tcga_cli <- tcga_cli_deal(system.file(file.path("extdata","tcga_cli"),package="GeoTcgaData"))
